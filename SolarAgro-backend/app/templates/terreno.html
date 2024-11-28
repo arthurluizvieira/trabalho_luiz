@@ -1,0 +1,24 @@
+<!-- templates/terreno.html -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Terreno - SolarAgro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Detalhes do Terreno</h1>
+    </header>
+    <main>
+        <h2>Terreno {{ terrain.id }}</h2>
+        <p><strong>Área:</strong> {{ terrain.area }} m²</p>
+        <p><strong>Latitude:</strong> {{ terrain.latitude }}</p>
+        <p><strong>Longitude:</strong> {{ terrain.longitude }}</p>
+        <p><strong>Tipo de Solo:</strong> {{ terrain.soil_type }}</p>
+        <p><strong>Descrição:</strong> {{ terrain.description }}</p>
+    </main>
+</body>
+</html>

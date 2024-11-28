@@ -1,0 +1,44 @@
+<!-- templates/dashboard.html -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SolarAgro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Dashboard SolarAgro</h1>
+    </header>
+    <main>
+        <h2>Lista de Terrenos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Área</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Tipo de Solo</th>
+                    <th>Detalhes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for terreno in terrenos %}
+                <tr>
+                    <td>{{ terreno.id }}</td>
+                    <td>{{ terreno.area }}</td>
+                    <td>{{ terreno.latitude }}</td>
+                    <td>{{ terreno.longitude }}</td>
+                    <td>{{ terreno.soil_type }}</td>
+                    <td><a href="{{ url_for('main.terreno', id=terreno.id) }}">Ver Detalhes</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('main.adicionar_terreno') }}">Adicionar Novo Terreno</a>
+    </main>
+</body>
+</html>
