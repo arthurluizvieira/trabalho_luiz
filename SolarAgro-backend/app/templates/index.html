@@ -1,5 +1,3 @@
-<!-- templates/index.html -->
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -12,8 +10,8 @@
     <header>
         <h1>Bem-vindo ao SolarAgro</h1>
         <nav>
-            <a href="{{ url_for('main.dashboard') }}">Dashboard</a>
-            <a href="{{ url_for('main.adicionar_terreno') }}">Adicionar Terreno</a>
+            <a href="{{ url_for('routes.dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('routes.adicionar_terreno') }}">Adicionar Terreno</a>
         </nav>
     </header>
     <main>

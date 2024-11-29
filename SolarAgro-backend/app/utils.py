@@ -34,5 +34,4 @@
 
 
 def calculate_solar_potential(soil_data):
-    # Função utilitária para cálculo
     return 100 * soil_data.get('suitability_score', 0)

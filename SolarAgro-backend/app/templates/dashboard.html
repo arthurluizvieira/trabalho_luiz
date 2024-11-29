@@ -1,5 +1,3 @@
-<!-- templates/dashboard.html -->
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -33,12 +31,12 @@
                     <td>{{ terreno.latitude }}</td>
                     <td>{{ terreno.longitude }}</td>
                     <td>{{ terreno.soil_type }}</td>
-                    <td><a href="{{ url_for('main.terreno', id=terreno.id) }}">Ver Detalhes</a></td>
+                    <td><a href="{{ url_for('routes.terreno', id=terreno.id) }}">Ver Detalhes</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <a href="{{ url_for('main.adicionar_terreno') }}">Adicionar Novo Terreno</a>
+        <a href="{{ url_for('routes.adicionar_terreno') }}">Adicionar Novo Terreno</a>
     </main>
 </body>
 </html>

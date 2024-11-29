@@ -46,6 +46,5 @@
 import os
 
 class Config:
-    # Defina a URI do banco de dados aqui
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'sqlite:///site.db')  # Fallback para SQLite
-    SQLALCHEMY_TRACK_MODIFICATIONS = False  # Desabilita a notificação de modificações
+    SQLALCHEMY_TRACK_MODIFICATIONS = False  # Desabilita os avisos do Flask
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///solaragro.db'  # Caminho do banco SQLite

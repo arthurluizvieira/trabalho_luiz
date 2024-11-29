@@ -56,32 +56,18 @@
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
 from .config import Config
 
-# Inicializa as extensões
-db = SQLAlchemy()
-login_manager = LoginManager()
+db = SQLAlchemy()  # Instância do SQLAlchemy
 
-def create_app(config_filename='config.py'):
+def create_app():
     app = Flask(__name__)
-    app.config.from_pyfile(config_filename)  # Carregando as configurações
+    app.config.from_object(Config)  # Configurações a partir do arquivo config.py
+    db.init_app(app)  # Inicializa a instância de db
 
-    print(app.config['SQLALCHEMY_DATABASE_URI'])  # Verificando a URI do banco de dados
-
-    # Inicializa o banco de dados e o login manager
-    db.init_app(app)
-    login_manager.init_app(app)
-
-    # Função user_loader
-    @login_manager.user_loader
-    def load_user(user_id):
-        from .models import User  # Importação para evitar circular import
-        return User.query.get(int(user_id))
-
-    # Registra as rotas
-    from . import routes
-    app.register_blueprint(routes.bp)
+    # Registrar os blueprints
+    from .routes import bp as routes_bp
+    app.register_blueprint(routes_bp)
 
     return app
 

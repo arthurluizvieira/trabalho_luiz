@@ -47,24 +47,20 @@
 
 
 
-
 from . import db
-from flask_login import UserMixin
 
-# Definição da classe Terrain
 class Terrain(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    area = db.Column(db.Float, nullable=False)
-    latitude = db.Column(db.Float, nullable=False)
-    longitude = db.Column(db.Float, nullable=False)
-    soil_type = db.Column(db.String(50), nullable=True)
-    description = db.Column(db.Text, nullable=True)
+    area = db.Column(db.Float)
+    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float)
+    soil_type = db.Column(db.String(50))
+    description = db.Column(db.String(200))
 
     def __repr__(self):
         return f'<Terrain {self.id}>'
 
-# Definição da classe User
-class User(db.Model, UserMixin):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)

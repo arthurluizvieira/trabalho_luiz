@@ -22,12 +22,9 @@
 
 
 def analyze_soil(data):
-    # Exemplo de análise de solo
     soil_type = data.get('soil_type')
     suitability_score = 80 if soil_type == 'clay' else 60
     return {'soil_type': soil_type, 'suitability_score': suitability_score}
 
 def generate_report(data):
-    # Lógica para criar relatório (placeholder)
     return "Relatório gerado com sucesso!"
-

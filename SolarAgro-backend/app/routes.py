@@ -82,21 +82,17 @@
 
 
 
-# app/routes.py
-
 from flask import Blueprint, render_template, request, redirect, url_for
-from .models import db, Terrain
+from . import db
+from .models import Terrain
+from .controllers import analyze_soil
 
-bp = Blueprint('main', __name__)
+bp = Blueprint('routes', __name__)
 
 @bp.route('/')
 def index():
-    return render_template('index.html')
-
-@bp.route('/dashboard')
-def dashboard():
-    terrenos = Terrain.query.all()  # Pega todos os terrenos do banco
-    return render_template('dashboard.html', terrenos=terrenos)
+    terrenos = Terrain.query.all()
+    return render_template('index.html', terrenos=terrenos)
 
 @bp.route('/adicionar_terreno', methods=['GET', 'POST'])
 def adicionar_terreno():
@@ -106,13 +102,21 @@ def adicionar_terreno():
         longitude = request.form['longitude']
         soil_type = request.form['soil_type']
         description = request.form['description']
-        novo_terreno = Terrain(area=area, latitude=latitude, longitude=longitude, soil_type=soil_type, description=description)
-        db.session.add(novo_terreno)
+
+        terreno = Terrain(area=area, latitude=latitude, longitude=longitude, soil_type=soil_type, description=description)
+        db.session.add(terreno)
         db.session.commit()
-        return redirect(url_for('main.dashboard'))
+
+        return redirect(url_for('routes.dashboard'))
+    
     return render_template('adicionar_terreno.html')
+
+@bp.route('/dashboard')
+def dashboard():
+    terrenos = Terrain.query.all()
+    return render_template('dashboard.html', terrenos=terrenos)
 
 @bp.route('/terreno/<int:id>')
 def terreno(id):
-    terrain = Terrain.query.get(id)  # Obtém um terreno pelo ID
-    return render_template('terreno.html', terrain=terrain)
+    terreno = Terrain.query.get(id)
+    return render_template('terreno.html', terrain=terreno)
